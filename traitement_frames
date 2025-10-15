@@ -76,7 +76,9 @@ for j in range(1,11):
         
         #contrôle visuel
         coordon = df.head(1)['coords'].iloc[0]
-        
+
+        ""SI PERIMETRE SORT TROP DE LA MOYENNE DES 3 DERNIERS, POP; algo qui enleve les images foireuses""
+
         lx = []
         ly = []
         lx2 = []
