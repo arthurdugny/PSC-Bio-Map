@@ -33,7 +33,7 @@ for j in range(1,11):
         img = io.imread(nom_de_photo,as_gray = True)
         
         #on coupe les côtés des images
-        img = crop(img,((23,23),(40,30)), copy=False, order='K') 
+        img = crop(img,((18,18),(40,30)), copy=False, order='K') 
         
         #traitement de l'image
         v_min, v_max = np.percentile(img, (0.2, 90))
