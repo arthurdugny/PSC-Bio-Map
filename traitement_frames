@@ -60,19 +60,19 @@ for j in range(1,11):
         #Extraire les coordonnées de la première composante connexe
         coords = df.iloc[0]["coords"]
         coords2 = df.iloc[1]["coords"]
-        
+        n1 = len(coords)
+        n2 = len(coords2)
         #Trier les coordonnées par abscisse croissante (x = colonne)
         coords_sorted = sorted(coords, key=lambda c: c[1])
         coords_sorted2 = sorted(coords2, key=lambda c: c[1])
         
         #Remettre à jour dans le DataFrame si besoin
-        if coords_sorted[0][0] > coords_sorted2[0][0] :
+        if coords_sorted[n1//2][0] > coords_sorted2[n2//2][0] :
             df.at[df.index[0], "coords"] = coords_sorted
             df.at[df.index[1], "coords"] = coords_sorted2
         else :
             df.at[df.index[0], "coords"] = coords_sorted2
             df.at[df.index[1], "coords"] = coords_sorted
-            df['perimeter'][0], df['perimeter'][1] = df['perimeter'][1], df['perimeter'][0]
         
         #contrôle visuel
         coordon = df.head(1)['coords'].iloc[0]
