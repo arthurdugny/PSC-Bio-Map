@@ -44,4 +44,5 @@ for k in range (2,11):
     ]
     
     # Exécution de la commande
+
     subprocess.run(cmd)
