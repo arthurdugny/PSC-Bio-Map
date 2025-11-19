@@ -19,18 +19,19 @@ compteur_patient = 1
 compteur_frame = 1
 
 #Ouverture des N = 10 vidéos à analyser
-for j in range(1,3):
-    for nom_video in ["S_0","M_0"]:
+for etat_patient in ["S","M"]:
+    for j in range(1,2):
         if j<10:
-            nom_video = nom_video + "0" + str(j)
+            nom_video = etat_patient + "_00" + str(j)
         else:
-            nom_video = nom_video + "10"
+            nom_video = etat_patient + "_010"
     
         nb_photo = 139
         
         '''RENSEIGNER CHEMIN DES IMAGES'''
         nom_photo = fr"C:\Users\zhang\OneDrive\Documents\_Tom\Polytechnique\2A\PSC\Vidéos 1\{nom_video}\{nom_video}_"
-    
+        print(nom_photo)
+        
         #Ouverture de chaque frame 
         for k in range (1,nb_photo+1):
             if k<10:
@@ -120,12 +121,12 @@ for j in range(1,3):
                 perimeter_bas = df.at[df.index[1], "perimeter"]
                 perimeter_haut = df.at[df.index[0], "perimeter"]
     
-            temp_dict_bas = {"CC_id": "CC_"+ str(compteur_patient) + "_" + str(compteur_frame) + "_b", 
+            temp_dict_bas = {"CC_id": "CC_"+ etat_patient + str(compteur_patient) + "_" + str(compteur_frame) + "_b", 
                          "coords" :  coords_sorted,
                          "perimeter" : perimeter_bas}
             temp_df_bas = pd.DataFrame([temp_dict_bas])
             
-            temp_dict_haut = {"CC_id": "CC_"+ str(compteur_patient) + "_" + str(compteur_frame) + "_h", 
+            temp_dict_haut = {"CC_id": "CC_"+ etat_patient + str(compteur_patient) + "_" + str(compteur_frame) + "_h", 
                          "coords" :  coords_sorted,
                          "perimeter" : perimeter_haut}
             temp_df_haut = pd.DataFrame([temp_dict_haut])
@@ -139,8 +140,8 @@ for j in range(1,3):
         # Incrémentation du compteur de patients
         compteur_frame = 1
         compteur_patient += 1
-
+    compteur_patient = 1
 
 '''EXPORT EN CSV'''
-dataset.to_csv(r"C:\Users\zhang\OneDrive\Documents\_Tom\Polytechnique\2A\PSC\dataset_test.csv", index=False)
+dataset.to_excel(r"C:\Users\zhang\OneDrive\Documents\_Tom\Polytechnique\2A\PSC\dataset_test.xlsx", index=False)
 
